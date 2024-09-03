@@ -1,0 +1,88 @@
+My Solution that worked on first Try : 
+
+
+
+class Solution {
+    public int[] topKFrequent(int[] nums, int k) {
+
+        int [] returnable = new int [k];
+
+        // Hash Map : 
+        // positive numbers get stored from + 1000
+        // negative numbers stored as is 
+        int [] MostFrequent = new int [2000];
+
+
+        for(int i = 0; i < nums.length; i ++){
+            if(nums[i]>0){
+                MostFrequent[nums[i]+ 1000]  ++;
+
+            }else if(nums[i] == 0){
+                MostFrequent[1000] ++;
+
+            }else{
+                int input = Math.abs(nums[i]);
+                MostFrequent[input] ++;
+            }
+        }
+
+        // Now find the K most frequent entries now in topKFrequent
+        for(int p = 0; p < k; p ++){
+        
+        int Biggest = 0;
+        int Index = 0;
+        for(int i = 0; i < MostFrequent.length; i ++){
+        
+            if(MostFrequent[i]>Biggest){
+                Biggest = MostFrequent[i];
+                Index = i;
+            }
+        }
+        MostFrequent[Index] = 0;
+        if(Index > 999){
+            returnable[p] = Index -1000;
+        }else{
+            returnable[p] = Index *-1;
+        }
+        }
+        return returnable;
+    }
+        
+}
+
+
+// Optimized solution reccomended by ChatGPT : 
+
+
+class Solution {
+    public int[] topKFrequent(int[] nums, int k) {
+        // Step 1: Count the frequencies using a HashMap
+        Map<Integer, Integer> frequencyMap = new HashMap<>();
+        for (int num : nums) {
+            frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
+        }
+
+        // Step 2: Use a min-heap to keep the top K frequent elements
+        PriorityQueue<Map.Entry<Integer, Integer>> heap = 
+            new PriorityQueue<>((a, b) -> a.getValue() - b.getValue());
+
+        // Step 3: Iterate over the frequency map to find the top K elements
+        for (Map.Entry<Integer, Integer> entry : frequencyMap.entrySet()) {
+            heap.offer(entry);
+            if (heap.size() > k) {
+                heap.poll(); // Remove the least frequent element
+            }
+        }
+
+        // Step 4: Extract the elements from the heap into the result array
+        int[] result = new int[k];
+        for (int i = k - 1; i >= 0; i--) {
+            result[i] = heap.poll().getKey();
+        }
+
+        return result;
+    }
+}
+    
+
+
