@@ -1,0 +1,5 @@
+How to convert a string to remove all whitespaces, and non alphanumeric letters and converts alpha characters to underscore 
+in python : 
+        newstr = re.sub(r"\s|[^a-zA-Z0-9]", "", s).lower()
+
+

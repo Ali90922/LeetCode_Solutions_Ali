@@ -1,0 +1,28 @@
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        # # Clean the string: remove non-alphanumeric characters and convert to lowercase
+        # newstr = re.sub(r"\s|[^a-zA-Z0-9]", "", s).lower()
+        # length = len(newstr)
+
+        # # Use a loop to compare characters from the start and end
+        # for i in range(length // 2):
+        #     if newstr[i] != newstr[length - 1 - i]:
+        #         return False  # If characters do not match
+        
+        # return True  # If all characters match, it's a palindrome
+        newstr = re.sub(r"\s|[^a-zA-Z0-9]", "", s).lower()
+
+        l = 0
+        r = len(newstr)-1
+        while l<r:
+            if(newstr[r] != newstr[l]):
+                return False
+            l+=1
+            r-=1
+        return True
+
+
+
+
+
+
