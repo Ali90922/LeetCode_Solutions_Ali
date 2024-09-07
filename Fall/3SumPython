@@ -1,0 +1,35 @@
+from typing import List
+
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()
+        int_array = []
+
+        for i in range(len(nums)):
+            if i > 0 and nums[i] == nums[i - 1]:
+                continue  # Skxip duplicate values for the current index
+
+            leftpointer = i + 1
+            rightpointer = len(nums) - 1
+
+            while leftpointer < rightpointer:
+                current_sum = nums[i] + nums[leftpointer] + nums[rightpointer]
+
+                if current_sum == 0:
+                    int_array.append([nums[i], nums[leftpointer], nums[rightpointer]])
+                    leftpointer += 1
+                    rightpointer -= 1
+
+                    # Skip duplicates for left and right pointers
+                    while leftpointer < rightpointer and nums[leftpointer] == nums[leftpointer - 1]:
+                        leftpointer += 1
+                    while leftpointer < rightpointer and nums[rightpointer] == nums[rightpointer + 1]:
+                        rightpointer -= 1
+
+                elif current_sum > 0:
+                    rightpointer -= 1
+                else:
+                    leftpointer += 1
+
+        return int_array
+
