@@ -1,0 +1,18 @@
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        l = 0
+        r = len(height) - 1
+        Maxx = 0
+
+        while l < r:
+            # Calculate the area and update Maxx if it's larger
+            Maxx = max(Maxx, (min(height[l], height[r]) * (r - l)))
+
+            # Move the pointers based on the comparison of height at l and r
+            if height[r] > height[l]:
+                l += 1
+            else:
+                r -= 1
+        
+        return Maxx  # Return after the loop finishes
+
