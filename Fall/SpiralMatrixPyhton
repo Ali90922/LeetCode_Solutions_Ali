@@ -1,0 +1,36 @@
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        # start with the boundries and then move in !
+        res = []
+
+        left = 0
+        right = len(matrix[0])
+        top = 0
+        bottom = len(matrix)
+
+        while left < right and top < bottom:
+            # get every value in the top row 
+            for i in range(left,right):
+                res.append(matrix[top][i])
+            top +=1
+            # get every value in right side 
+            for j in range(top, bottom):
+                res.append(matrix[j][right -1])
+            right -=1
+            
+
+            # check condition
+            if not(left < right and bottom > top):
+                break
+
+            # for every value in the bottom side
+            for q in range (right -1, left -1,-1):
+                res.append(matrix[bottom -1][q])
+            bottom -=1
+
+            # for every value in the left side now 
+            for z in range(bottom -1, top-1,-1):
+                res.append(matrix[z][left])
+            left +=1
+        return res
+        
