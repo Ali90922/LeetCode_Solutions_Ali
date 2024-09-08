@@ -1,0 +1,66 @@
+/// First Solution without maintaing the two arrays : 
+class Solution:
+    def trap(self, height: List[int]) -> int:
+
+        if not height : return 0
+        l,r = 0,len(height)-1
+        leftMax,rightMax = height[l],height[r]
+        res = 0
+
+
+        while l < r:
+            if(leftMax < rightMax):
+                l +=1
+                leftMax = max(height[l],leftMax)
+                res += leftMax - height[l]
+            else:
+                # shift right pointer
+                r -=1
+                rightMax = max(height[r], rightMax)
+                res+= rightMax - height[r]
+
+
+
+
+
+        return res
+
+
+
+
+// Other Solution with the two different arrays 
+
+from typing import List
+
+class Solution:
+    def trap(self, height: List[int]) -> int:
+        if not height:
+            return 0
+
+        n = len(height)
+        leftMax = [0] * n
+        rightMax = [0] * n
+        waterTrapped = 0
+
+        # Initialize the first element of leftMax and the last of rightMax
+        leftMax[0] = height[0]
+        rightMax[n - 1] = height[n - 1]
+
+        # Fill leftMax array
+        for i in range(1, n):
+            leftMax[i] = max(leftMax[i - 1], height[i])
+
+        # Fill rightMax array
+        for i in range(n - 2, -1, -1):
+            rightMax[i] = max(rightMax[i + 1], height[i])
+
+        # Calculate the trapped water
+        for i in range(n):
+            waterTrapped += min(leftMax[i], rightMax[i]) - height[i]
+
+        return waterTrapped
+
+# Example usage:
+solution = Solution()
+print(solution.trap([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]))  # Expected output: 6
+
