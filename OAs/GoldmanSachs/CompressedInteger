@@ -1,0 +1,62 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+
+
+#
+# Complete the 'betterCompression' function below.
+#
+# The function is expected to return a STRING.
+# The function accepts STRING s as parameter.
+#
+from collections import defaultdict
+def betterCompression(s):
+    # Write your code here
+    hashmap = defaultdict(int)
+    i = 0
+    
+    while i< len(s):
+        char = s[i]
+        i += 1
+        num = 0
+        # print("hello world")
+        print(s[i])
+        while i<len(s) and s[i].isdigit():
+            num = num * 10 + int(s[i])
+            i+=1
+        print(num)
+               
+        hashmap[char] += num
+
+        
+        
+    print(hashmap)
+    result = ''.join(f"{char}{hashmap[char]}" for char in sorted(hashmap))
+    return result
+        
+        
+        # if char in hashmap:
+        #     hashmap[char] += num
+        # else:
+        #     hashmap[char] = num
+    
+    result = ''.join(f"{char}{hashmap[char]}" for char in sorted(hashmap))
+    return result
+        
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = betterCompression(s)
+
+    fptr.write(result + '\n')
+
+    fptr.close()
+
+
