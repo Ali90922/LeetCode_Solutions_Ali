@@ -1,0 +1,55 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+
+
+#
+# Complete the 'calculatePossibleCombinations' function below.
+#
+# The function is expected to return a LONG_INTEGER.
+# The function accepts STRING inputStr as parameter.
+#
+
+def calculatePossibleCombinations(inputStr):
+    # Write your code here
+    n = len(inputStr)
+    if inputStr[0] == '0':
+        return 0
+        
+    # DP array to store the number of decoding ways
+    dp = [0] * (n + 1)
+    
+    
+    # Base case: There's one way to decode an empty string
+    dp[0] = 1
+    
+    dp[1] =1 if inputStr[0] != '0' else 0
+    
+    for i in range(2,n+1):
+        # Check the last single digit
+        if inputStr[i-1] != '0':
+            dp[i] += dp[i-1]
+            
+        # Check the last two digits
+        two_digit = int(inputStr[i-2:i])
+        if 10 <= two_digit <= 26:
+            dp[i] += dp[i-2]
+    return dp[n]
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    inputStr = input()
+
+    result = calculatePossibleCombinations(inputStr)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
+
+
