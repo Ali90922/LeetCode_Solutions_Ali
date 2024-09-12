@@ -1,0 +1,96 @@
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def addTwoNumbers(self, l1, l2):
+
+        linArray1 = self.reverseList(l1)
+        linArray2 = self.reverseList(l2)
+
+        aa = ""
+        for i in range(len(linArray1)):
+            aa += str(linArray1[i])
+            ab = int(aa)
+        
+        bb = ""
+        for i in range(len(linArray2)):
+            bb += str(linArray2[i])
+            ba = int(bb)
+        
+        # Sum the integers
+        answer = ba + ab
+
+        # Convert the sum to a string
+        bq = str(answer)
+
+
+        # Convert the string into a linked list
+        z =  self.stringToLinkedList(bq)
+        return self.reverseListReal(z)
+
+
+        
+        
+
+
+
+
+# Below functions reverses the list and returns an array
+    def reverseList(self,head):
+        prev = None
+        curr = head
+        ret = []
+
+        while(curr != None):
+            # Save the next node
+            next_node = curr.next
+            # Reverse the current node's pointer
+            curr.next = prev
+            # Move pointers one position forward
+            prev = curr
+            curr = next_node
+            # prev will be the new head of the reversed list
+        # Prev is the head node after this
+
+        # after reversing return as an Array
+        # Traverse the reversed list from 'prev' and add values to the array
+        while prev is not None:
+            ret.append(prev.val)
+            prev = prev.next
+        return ret
+        
+
+
+    def stringToLinkedList(self, num_str):
+        # Convert the first character to a node
+        head = ListNode(int(num_str[0]))
+        current = head
+
+        # Loop through the remaining characters
+        for char in num_str[1:]:
+            new_node = ListNode(int(char))
+            current.next = new_node
+            current = current.next
+
+        return head
+
+
+    def reverseListReal(self,head):
+        prev = None
+        curr = head
+        ret = []
+
+        while(curr != None):
+            # Save the next node
+            next_node = curr.next
+            # Reverse the current node's pointer
+            curr.next = prev
+            # Move pointers one position forward
+            prev = curr
+            curr = next_node
+            # prev will be the new head of the reversed list
+        return prev
+
+        # Prev is the head node after this
