@@ -52,3 +52,50 @@ class Solution {
         return new int[0];
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Two sum solution pyhton brute force : 
+
+
+def two_sum_brute_force(nums, target):
+    # Loop through each element in the list
+    for i in range(len(nums)):
+        # Check each subsequent element to find a pair that sums to the target
+        for j in range(i + 1, len(nums)):
+            # If a pair is found, return their indices
+            if nums[i] + nums[j] == target:
+                return [i, j]
+    return None  # Return None if no pair found
+
+
+
+
+
+
+// Now two sum solution in pyhton, with a Hashmap  Optimal solution : 
+    def two_sum_hash_map(nums, target):
+    # Create a dictionary to store the difference and corresponding index
+    num_map = {}
+    # Loop through each element in the list
+    for i, num in enumerate(nums):
+        # Calculate the complement that would sum with the current element to make the target
+        complement = target - num
+        # If the complement is already in the map, return the indices
+        if complement in num_map:
+            return [num_map[complement], i]
+        # Otherwise, add the current element and its index to the map
+        num_map[num] = i
+    return None  # Return None if no pair found
+
