@@ -1,0 +1,20 @@
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        ; find the lowest 
+        :rtype: int
+        """
+        left = 0 
+        right = 1
+        MaxProfit = 0
+
+        for right in range(len(prices)):
+            if(prices[left] > prices[right]):
+                left =right
+            else:
+                profit = prices[right] - prices[left]
+                MaxProfit = max(MaxProfit, profit)
+                right +=1
+        return MaxProfit
+
