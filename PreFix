@@ -1,0 +1,82 @@
+~Easy Problems
+560. Subarray Sum Equals K
+- Done
+Key Idea: Use a prefix sum to count the number of subarrays that sum up to k.
+
+
+303. Range Sum Query - Immutable
+Key Idea: Use a prefix sum array to efficiently calculate the sum of elements in a range.
+
+
+724. Find Pivot Index
+- Done
+Key Idea: Compute left sum and right sum using prefix sum for each index.
+1480. Running Sum of 1D Array
+
+Link to LeetCode
+Key Idea: Simple cumulative sum calculation (variation of prefix sum).
+238. Product of Array Except Self
+
+Link to LeetCode
+Key Idea: Prefix product variation where each element is the product of all other elements.
+121. Best Time to Buy and Sell Stock
+
+Link to LeetCode
+Key Idea: Calculate maximum profit by tracking minimum price prefix.
+Medium Problems
+437. Path Sum III
+
+Link to LeetCode
+Key Idea: Using prefix sum in a binary tree to find the number of paths summing to a target.
+523. Continuous Subarray Sum
+
+Link to LeetCode
+Key Idea: Use the prefix sum modulo technique to find subarrays whose sum is a multiple of k.
+2381. Shifting Letters II
+
+Link to LeetCode
+Key Idea: Range-based shifts using prefix sum.
+2385. Amount of Time for Binary Tree to Be Infected
+
+Link to LeetCode
+Key Idea: Use DFS and prefix sum logic for traversal and time calculation.
+523. Continuous Subarray Sum
+
+Link to LeetCode
+Key Idea: Use the prefix sum modulo technique to find subarrays whose sum is a multiple of k.
+974. Subarray Sums Divisible by K
+
+Link to LeetCode
+Key Idea: Similar to subarray sum equals K but focusing on mod operations.
+560. Subarray Sum Equals K
+
+Link to LeetCode
+Key Idea: Use prefix sums to find the count of subarrays that sum to a target.
+525. Contiguous Array
+
+Link to LeetCode
+Key Idea: Binary array problem solved using prefix sum to balance 1's and 0's.
+238. Product of Array Except Self
+
+Link to LeetCode
+Key Idea: Prefix product variation where each element is the product of all other elements.
+1248. Count Number of Nice Subarrays
+
+Link to LeetCode
+Key Idea: Count subarrays containing a fixed number of odd numbers using prefix sums.
+930. Binary Subarrays With Sum
+
+Link to LeetCode
+Key Idea: Similar to the "Subarray Sum Equals K" problem, but on a binary array.
+1524. Number of Subarrays With Odd Sum
+
+Link to LeetCode
+Key Idea: Use prefix sums to count subarrays with an odd sum.
+1094. Car Pooling
+
+Link to LeetCode
+Key Idea: Use prefix sum to handle range updates and verify the constraints.
+1395. Count Number of Teams
+
+Link to LeetCode
+Key Idea: Use a prefix sum-like approach for counting valid combinations.~
