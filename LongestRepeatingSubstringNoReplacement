@@ -1,0 +1,20 @@
+class Solution:
+    def longestSameCharacterSubstring(self, s: str) -> int:
+        if not s:
+            return 0
+        
+        # Variables for the sliding window
+        res = 0
+        left = 0
+
+        # Traverse the string with the right pointer
+        for right in range(len(s)):
+            # Shrink the window if the current character is different from the character at left
+            while s[right] != s[left]:
+                left += 1
+            
+            # Update the result with the longest window found so far
+            res = max(res, right - left + 1)
+        
+        return res
+
