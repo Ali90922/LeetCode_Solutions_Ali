@@ -10,3 +10,36 @@ class Solution(object):
             
         return rob2
 
+
+
+
+##### Solution with explanation : 
+
+class Solution(object):
+    def rob(self, nums):
+        # Initialize two variables:
+        # rob1: Maximum amount we can rob up to the previous house
+        # rob2: Maximum amount we can rob up to the current house
+        rob1, rob2 = 0, 0
+        
+        # Loop through each house in the list
+        for n in nums:
+            # Calculate the maximum amount we can rob if we include the current house
+            # We have two options:
+            # 1. Rob the current house: In this case, we add the current house's amount (n)
+            #    to rob1, which represents the maximum amount we could rob up to the house
+            #    before the last house. This ensures we're not robbing two consecutive houses.
+            # 2. Don't rob the current house: In this case, we take rob2 as is, which is the
+            #    maximum amount we could rob up to the previous house.
+            # The new maximum for the current house will be the higher of these two options.
+            temp = max(rob1 + n, rob2)
+            
+            # Update rob1 and rob2 for the next iteration:
+            # rob1 now becomes the old rob2 (moving one house forward)
+            # rob2 now becomes temp (our new maximum amount up to the current house)
+            rob1 = rob2
+            rob2 = temp
+        
+        # After the loop, rob2 will hold the maximum amount we can rob without alerting the police
+        return rob2
+
