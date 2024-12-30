@@ -1,0 +1,24 @@
+class Solution(object):
+    def gcdOfStrings(self, str1, str2):
+        """
+        :type str1: str
+        :type str2: str
+        :rtype: str
+        """
+        # This is the Euclidean algorithim used to calculate the GCD - 
+        # Studied this in 2080 but i forgot
+        def gcd(a, b):
+            while b != 0:
+                a, b = b, a % b
+            return a
+
+        # Check if str1 + str2 == str2 + str1 (necessary condition for a common divisor)
+        if str1 + str2 != str2 + str1:
+            return ""
+        
+        # Find the GCD of the lengths of the two strings
+        gcd_length = gcd(len(str1), len(str2))
+        
+        # The candidate string is the prefix of length `gcd_length`
+        return str1[:gcd_length]
+
