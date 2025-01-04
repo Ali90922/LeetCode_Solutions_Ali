@@ -1,0 +1,32 @@
+import copy
+
+class Solution(object):
+    def pivotIndex(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        sumLeft = copy.deepcopy(nums)
+        sumRight = copy.deepcopy(nums)
+
+        for i in range(len(sumRight)):
+            if i ==0:
+                continue
+            else:
+                sumRight[i] = sumRight[i] + sumRight[i-1]
+
+        for i in range(len(sumLeft) - 2, -1, -1):  
+            # Start from second-to-last index and go to 0
+            sumLeft[i] = sumLeft[i] + sumLeft[i + 1]
+
+        p = 0
+        q = 69
+        for z in range(len(nums)):
+            if sumLeft[z] == sumRight[z]:
+                p = 1
+                q = z
+
+        if(q != 69):
+            return q
+        else:
+            return -1
