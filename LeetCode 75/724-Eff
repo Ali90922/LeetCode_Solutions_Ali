@@ -1,0 +1,18 @@
+class Solution(object):
+    def pivotIndex(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        total_sum = sum(nums)  # Total sum of the array
+        left_sum = 0  # Sum of elements to the left of the current index
+
+        for i in range(len(nums)):
+            # Calculate right sum as total_sum - left_sum - nums[i]
+            right_sum = total_sum - left_sum - nums[i]
+            if left_sum == right_sum:  # Check if pivot index condition is met
+                return i
+            left_sum += nums[i]  # Update left sum for the next iteration
+
+        return -1  # Return -1 if no pivot index is found
+
