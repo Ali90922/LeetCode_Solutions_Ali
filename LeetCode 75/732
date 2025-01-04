@@ -1,0 +1,17 @@
+class Solution(object):
+    def largestAltitude(self, gain):
+        """
+        :type gain: List[int]
+        :rtype: int
+        """
+        # Initialize variables
+        max_altitude = 0  # Start at sea level
+        current_altitude = 0
+        
+        # Calculate altitude for each point
+        for g in gain:
+            current_altitude += g  # Add the gain to the current altitude
+            max_altitude = max(max_altitude, current_altitude)  # Update the max altitude
+        
+        return max_altitude
+
