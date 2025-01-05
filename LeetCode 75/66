@@ -1,0 +1,18 @@
+class Solution {
+    fun plusOne(digits: IntArray): IntArray {
+        // Traverse the array from the last digit to the first
+        for (i in digits.size - 1 downTo 0) {
+            if (digits[i] < 9) {
+                digits[i] += 1
+                return digits // No carry, return result
+            }
+            digits[i] = 0 // Set to 0 and continue to propagate carry
+        }
+        
+        // If we have a carry after traversing all digits, add a leading 1
+        val result = IntArray(digits.size + 1)
+        result[0] = 1
+        return result
+    }
+}
+
