@@ -1,0 +1,29 @@
+class Solution {
+    fun addBinary(a: String, b: String): String {
+        var AValue = 0
+        var BValue = 0
+        var LenA = a.length - 1
+        var LenB = b.length - 1
+
+        // Calculate decimal value of binary string `a`
+        for (it in a.indices) {
+            if (a[it] == '1') {  // Compare with Char '1'
+                AValue += (1 shl LenA)  // 2^LenA is equivalent to 1 shl LenA
+            }
+            LenA -= 1
+        }
+
+        // Calculate decimal value of binary string `b`
+        for (it in b.indices) {
+            if (b[it] == '1') {  // Compare with Char '1'
+                BValue += (1 shl LenB)
+            }
+            LenB -= 1
+        }
+
+        // Add the two decimal values and convert to binary
+        val sum = AValue + BValue
+        return sum.toString(2)  // Convert the result to a binary string
+    }
+}
+
