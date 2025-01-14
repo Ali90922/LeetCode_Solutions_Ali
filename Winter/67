@@ -1,0 +1,24 @@
+class Solution(object):
+    def addBinary(self, a, b):
+        """
+        :type a: str
+        :type b: str
+        :rtype: str
+        """
+        # Convert both binary strings to integers
+        num_a = 0
+        for i in range(len(a)):
+            if a[i] == '1':  # Compare with '1', not 1
+                num_a += 2**(len(a) - i - 1)
+
+        num_b = 0
+        for i in range(len(b)):
+            if b[i] == '1':  # Compare with '1', not 1
+                num_b += 2**(len(b) - i - 1)
+
+        # Add the two numbers
+        result = num_a + num_b
+
+        # Convert the result back to binary
+        return bin(result)[2:]  # Strip the '0b' prefix
+
