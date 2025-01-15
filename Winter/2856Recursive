@@ -1,0 +1,26 @@
+class Solution(object):
+    def minLengthAfterRemovals(self, nums):
+        nums.sort()
+        n = len(nums)
+
+        def binary_search(left, right):
+            if left > right:
+                return 0  # Base case
+            
+            mid = (left + right) // 2
+            valid = True
+
+            # Check if pairing is valid for this k
+            for i in range(mid):
+                if nums[i] >= nums[n - mid + i]:
+                    valid = False
+                    break
+
+            if valid:
+                return max(mid, binary_search(mid + 1, right))  # Try larger k
+            else:
+                return binary_search(left, mid - 1)  # Try smaller k
+
+        max_k = binary_search(0, n // 2)
+        return n - 2 * max_k
+
