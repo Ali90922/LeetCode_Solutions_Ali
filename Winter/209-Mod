@@ -1,0 +1,26 @@
+class Solution(object):
+    def minSubArrayLen(self, target, nums):
+        """
+        :type target: int
+        :type nums: List[int]
+        :rtype: int
+        """
+        start = 0
+        current_sum = 0
+        min_length = float('inf')
+
+        for end in range(len(nums)):
+            current_sum += nums[end]  # Add the current element to the sum
+
+            # While the sum is greater than or equal to target, process the window
+            while current_sum >= target:
+                if current_sum == target:  # Check if the sum equals the target
+                    min_length = min(min_length, end - start + 1)
+
+                # Shrink the window
+                current_sum -= nums[start]
+                start += 1
+
+        # If no valid subarray is found, return 0
+        return min_length if min_length != float('inf') else 0
+
