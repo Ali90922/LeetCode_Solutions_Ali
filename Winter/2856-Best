@@ -1,0 +1,15 @@
+class Solution(object):
+    def minLengthAfterRemovals(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        n = len(nums)
+        left, right = 0, n // 2
+        
+        while left < n // 2 and right < n:
+            if nums[left] < nums[right]:
+                left += 1
+            right += 1
+        
+        return n - 2 * left
