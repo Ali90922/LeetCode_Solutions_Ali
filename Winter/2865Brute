@@ -1,0 +1,32 @@
+class Solution(object):
+    def minLengthAfterRemovals(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        # Sort the input array
+        nums.sort()
+        n = len(nums)
+
+        # Binary search to find the maximum valid k
+        left, right = 0, n // 2
+        max_k = 0
+
+        while left <= right:
+            mid = (left + right) // 2  # Midpoint (current k to check)
+            valid = True
+
+            # Check if pairing is valid for this k
+            for i in range(mid):
+                if nums[i] >= nums[n - mid + i]:  # Compare smallest k with largest k
+                    valid = False
+                    break
+            
+            if valid:  # If valid, try for a larger k
+                max_k = mid
+                left = mid + 1
+            else:  # If not valid, try for a smaller k
+                right = mid - 1
+
+        # Calculate the result: nums.length - 2 * max_k
+        return n - 2 * max_k
