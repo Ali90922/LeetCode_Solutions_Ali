@@ -1,0 +1,23 @@
+~class Solution(object):
+    def minDeletion(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        count = 0  # Count of deletions
+        i = 0  # Pointer to iterate over the list
+
+        while i < len(nums) - 1:  # Ensure we don't go out of bounds
+            # If `i` is even and nums[i] == nums[i + 1], we need to delete one
+            if i % 2 == 0 and nums[i] == nums[i + 1]:
+                count += 1  # Increment deletion count
+                nums.pop(i + 1)  # Remove the next element
+            else:
+                i += 1  # Move to the next element
+        
+        # If the final length of the list is odd, we need one more deletion
+        if len(nums) % 2 != 0:
+            count += 1
+
+        return count
+~
