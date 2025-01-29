@@ -1,0 +1,24 @@
+class Solution(object):
+    def maxArea(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+
+        maxArea = 0
+        leftPointer = 0
+        rightPointer = len(height) - 1  # Correct variable name (capitalization fixed)
+
+        while rightPointer > leftPointer:
+            # Calculate the area based on the shorter height
+            currentArea = min(height[rightPointer], height[leftPointer]) * (rightPointer - leftPointer)
+            maxArea = max(maxArea, currentArea)
+
+            # Move the pointer that points to the shorter height
+            if height[leftPointer] < height[rightPointer]:
+                leftPointer += 1
+            else:
+                rightPointer -= 1  # Corrected decrement operator
+
+        return maxArea
+
